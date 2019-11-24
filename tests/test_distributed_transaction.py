@@ -6,8 +6,8 @@ from distributed_transaction import DistributedTransaction
 class TestDistributedTransaction(TestCase):
     def given_transaction_summary_time_will_return(self, transaction: Transaction, is_save_to_disc: bool,
                                                    is_useful_data_only: bool, time: float) -> None:
-        transaction.get_time = lambda save_to_disc, useful_data_only: \
-            time if (is_save_to_disc == save_to_disc) & (is_useful_data_only == useful_data_only) else self.fail()
+        transaction.get_time = lambda save, useful: \
+            time if (is_save_to_disc == save) & (is_useful_data_only == useful) else self.fail()
 
     def setUp(self) -> None:
         pass
