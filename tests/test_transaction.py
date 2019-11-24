@@ -11,7 +11,7 @@ class TestTransaction(TestCase):
         transaction = Transaction()
 
         # when
-        actual_sum_time = transaction.get_sum_time(is_save_to_disc=True, is_useful_data_only=False)
+        actual_sum_time = transaction.get_time(is_save_to_disc=True, is_useful_data_only=False)
 
         # then
         expected_transfer_time = transaction.data_amount * 2 + 10
@@ -24,7 +24,7 @@ class TestTransaction(TestCase):
         transaction = Transaction()
 
         # when
-        actual_sum_time = transaction.get_sum_time(is_save_to_disc=True, is_useful_data_only=True)
+        actual_sum_time = transaction.get_time(is_save_to_disc=True, is_useful_data_only=True)
 
         # then
         expected_transfer_time = transaction.useful_data_amount * 2 + 10
@@ -37,7 +37,7 @@ class TestTransaction(TestCase):
         transaction = Transaction()
 
         # when
-        actual_sum_time = transaction.get_sum_time(is_save_to_disc=False, is_useful_data_only=True)
+        actual_sum_time = transaction.get_time(is_save_to_disc=False, is_useful_data_only=True)
 
         # then
         expected_transfer_time = transaction.useful_data_amount * 2 + 10
@@ -49,7 +49,7 @@ class TestTransaction(TestCase):
         transaction = Transaction()
 
         # when
-        actual_sum_time = transaction.get_sum_time(is_save_to_disc=False, is_useful_data_only=False)
+        actual_sum_time = transaction.get_time(is_save_to_disc=False, is_useful_data_only=False)
 
         # then
         expected_transfer_time = transaction.data_amount * 2 + 10

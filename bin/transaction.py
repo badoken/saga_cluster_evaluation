@@ -1,8 +1,8 @@
-import dataclasses
+from dataclasses import dataclass
 import random
 
 
-@dataclasses.dataclass
+@dataclass
 class Transaction:
     transaction_time: float
     data_amount: int
@@ -21,7 +21,7 @@ class Transaction:
     def _get_persist_time(self, only_useful_data: bool) -> float:
         return 40 + (self.useful_data_amount if only_useful_data else self.data_amount) * 5
 
-    def get_sum_time(self, is_save_to_disc: bool, is_useful_data_only: bool) -> float:
+    def get_time(self, is_save_to_disc: bool, is_useful_data_only: bool) -> float:
         return self.transaction_time + \
                self._get_transfer_time(only_useful_data=is_useful_data_only) + \
                (self._get_persist_time(only_useful_data=is_useful_data_only) if is_save_to_disc else 0)
