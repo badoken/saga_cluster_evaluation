@@ -7,13 +7,14 @@ from transaction import Transaction
 class TestDistributedTransactionFactory(TestCase):
     def test_generate_if_positive_value_specified(self):
         # given
-        factory = DistributedTransactionFactory()
+        factory = DistributedTransactionFactory(replication_factor=3)
 
         # when
         distributed_transaction = factory.generate(4)
 
         # then
         self.assertEqual(4, len(distributed_transaction.local_transactions))
+        self.assertEqual(3, distributed_transaction.replication_factor)
         for transaction in distributed_transaction.local_transactions:
             self.assertIsInstance(transaction, Transaction)
 
