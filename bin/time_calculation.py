@@ -71,5 +71,5 @@ distributed_transactions_summary = {
 figure3 = pyplot.figure(3)
 pyplot.title("Summary time required for " + str(len(distribute_transactions)) + " distributed transactions")
 pyplot.bar(x=distributed_transactions_summary.keys(), height=distributed_transactions_summary.values(), align='center')
-
+print("Symmary time for distributed transactions: " + str(distributed_transactions_summary))
 pyplot.show()
