@@ -7,11 +7,12 @@ from matplotlib import pyplot
 from distributed_transaction_factory import DistributedTransactionFactory
 
 replication_factor = 3
-distributed_transactions_count = 2_000
+distributed_transactions_count = 500
 
 distributed_transaction_factory = DistributedTransactionFactory(replication_factor)
 
-distribute_transactions = [distributed_transaction_factory.generate(random.randint(7, 20)) for n in range(0, 2_000)]
+distribute_transactions = [distributed_transaction_factory.generate(random.randint(7, 20))
+                           for n in range(distributed_transactions_count)]
 
 first_distributed_transaction = distribute_transactions[0]
 
@@ -33,7 +34,6 @@ local_transaction_times = {
 figure1 = pyplot.figure(1)
 pyplot.title("Local transactions time of one distributed transaction")
 for name, transaction_times in local_transaction_times.items():
-    print("HERE: " + str(transaction_times))
     pyplot.step(x=range(0, len(transaction_times)), y=transaction_times, label=name)
 pyplot.legend(local_transaction_times.keys(), loc='upper left')
 pyplot.xlabel("local transaction number")
