@@ -16,10 +16,10 @@ class Transaction:
         self.useful_data_amount = int(self.data_amount * self.useful_data_coef)
 
     def _get_transfer_time(self, only_useful_data: bool) -> float:
-        return 10 + (self.useful_data_amount if only_useful_data else self.data_amount) * 2
+        return 10 + (self.useful_data_amount if only_useful_data else self.data_amount)
 
     def _get_persist_time(self, only_useful_data: bool) -> float:
-        return 40 + (self.useful_data_amount if only_useful_data else self.data_amount) * 5
+        return 15 + (self.useful_data_amount if only_useful_data else self.data_amount) * 2
 
     def get_time(self, is_save_to_disc: bool, is_useful_data_only: bool) -> float:
         return self.transaction_time + \

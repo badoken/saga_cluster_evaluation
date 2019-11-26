@@ -79,7 +79,14 @@ figure3 = pyplot.figure(3)
 pyplot.title("Summary time required for " + str(distributed_transactions_count) + " distributed transactions")
 pyplot.bar(x=distributed_transactions_sum_time.keys(), height=distributed_transactions_sum_time.values())
 pyplot.grid(axis='y')
-print("Symmary time for distributed transactions: " + str(distributed_transactions_sum_time))
+print("Summary time for distributed transactions: " + str(distributed_transactions_sum_time))
+all_data_with_save = distributed_transactions_sum_time["all data with save to disc"]
+print("(useful data with save to disc) = " +
+      str(distributed_transactions_sum_time['useful data with save to disc'] / all_data_with_save * 100))
+print("(all data without save to disc) = " +
+      str(distributed_transactions_sum_time["all data without save to disc"] / all_data_with_save * 100))
+print("(useful data without save to disc) = " +
+      str(distributed_transactions_sum_time["useful data without save to disc"] / all_data_with_save * 100))
 
 distributed_transactions_sum_memory = {
     'all data': seq(distribute_transactions).map(lambda d_t: d_t.memory_usage(only_useful_data=False)).sum(),
@@ -91,5 +98,7 @@ pyplot.title("Memory requirements for " + str(distributed_transactions_count) + 
              str(replication_factor) + " replication factor")
 pyplot.bar(x=distributed_transactions_sum_memory.keys(), height=distributed_transactions_sum_memory.values())
 pyplot.grid(axis='y')
+print("(useful data) / (all data) = " +
+      str(distributed_transactions_sum_memory['useful data'] / distributed_transactions_sum_memory['all data'] * 100))
 
 pyplot.show()

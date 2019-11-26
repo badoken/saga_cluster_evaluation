@@ -14,8 +14,8 @@ class TestTransaction(TestCase):
         actual_sum_time = transaction.get_time(is_save_to_disc=True, is_useful_data_only=False)
 
         # then
-        expected_transfer_time = transaction.data_amount * 2 + 10
-        expected_persist_time = transaction.data_amount * 5 + 40
+        expected_transfer_time = transaction.data_amount + 10
+        expected_persist_time = transaction.data_amount * 2 + 15
         expected_sum_time = transaction.transaction_time + expected_transfer_time + expected_persist_time
         self.assertAlmostEquals(expected_sum_time, actual_sum_time, delta=0.0001)
 
@@ -27,8 +27,8 @@ class TestTransaction(TestCase):
         actual_sum_time = transaction.get_time(is_save_to_disc=True, is_useful_data_only=True)
 
         # then
-        expected_transfer_time = transaction.useful_data_amount * 2 + 10
-        expected_persist_time = transaction.useful_data_amount * 5 + 40
+        expected_transfer_time = transaction.useful_data_amount + 10
+        expected_persist_time = transaction.useful_data_amount * 2 + 15
         expected_sum_time = transaction.transaction_time + expected_transfer_time + expected_persist_time
         self.assertAlmostEquals(expected_sum_time, actual_sum_time, delta=0.0001)
 
@@ -40,7 +40,7 @@ class TestTransaction(TestCase):
         actual_sum_time = transaction.get_time(is_save_to_disc=False, is_useful_data_only=True)
 
         # then
-        expected_transfer_time = transaction.useful_data_amount * 2 + 10
+        expected_transfer_time = transaction.useful_data_amount + 10
         expected_sum_time = transaction.transaction_time + expected_transfer_time
         self.assertAlmostEquals(expected_sum_time, actual_sum_time, delta=0.0001)
 
@@ -52,6 +52,6 @@ class TestTransaction(TestCase):
         actual_sum_time = transaction.get_time(is_save_to_disc=False, is_useful_data_only=False)
 
         # then
-        expected_transfer_time = transaction.data_amount * 2 + 10
+        expected_transfer_time = transaction.data_amount + 10
         expected_sum_time = transaction.transaction_time + expected_transfer_time
         self.assertAlmostEquals(expected_sum_time, actual_sum_time, delta=0.0001)
