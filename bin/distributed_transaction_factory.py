@@ -6,7 +6,7 @@ from transaction import Transaction
 
 @dataclass
 class DistributedTransactionFactory:
-    replication_factor: int = 1
+    replication_factor: int = 3
 
     def generate(self, count: int) -> DistributedTransaction:
         if count <= 0:
